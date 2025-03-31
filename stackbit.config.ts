@@ -1,4 +1,5 @@
-import { defineStackbitConfig, FileSystemContentSource } from '@stackbit/types';
+import { defineStackbitConfig } from '@stackbit/types';
+import { GitContentSource } from '@stackbit/cms-git';
 
 export default defineStackbitConfig({
   stackbitVersion: '~0.6.0',
@@ -6,88 +7,84 @@ export default defineStackbitConfig({
   ssgName: 'hugo',
 
   contentSources: [
-    new FileSystemContentSource({
-      name: 'content',
-      path: 'site/content',
+    new GitContentSource({
+      rootPath: __dirname,
+      contentDirs: ['site/content'],
       models: [
         {
-          name: 'homepage',
-          label: 'Homepage',
-          filePathPattern: '_index.md',
+          name: 'Homepage',
           type: 'page',
+          filePath: 'site/content/_index.md',
+          urlPath: '/',
           fields: [
-            { name: 'title', type: 'string', label: 'Title' },
-            { name: 'subtitle', type: 'string', label: 'Subtitle' },
-            { name: 'image', type: 'image', label: 'Hero Image' },
+            { name: 'title', type: 'string', required: true },
+            { name: 'subtitle', type: 'string' },
+            { name: 'image', type: 'image' },
             {
               name: 'blurb',
               type: 'object',
-              label: 'Blurb',
               fields: [
-                { name: 'heading', type: 'string', label: 'Heading' },
-                { name: 'text', type: 'text', label: 'Text' }
+                { name: 'heading', type: 'string' },
+                { name: 'text', type: 'text' }
               ]
             },
             {
               name: 'intro',
               type: 'object',
-              label: 'Intro',
               fields: [
-                { name: 'heading', type: 'string', label: 'Heading' },
-                { name: 'text', type: 'text', label: 'Text' }
+                { name: 'heading', type: 'string' },
+                { name: 'text', type: 'text' }
               ]
             },
             {
               name: 'products',
               type: 'list',
-              label: 'Products',
               items: {
                 type: 'object',
                 fields: [
-                  { name: 'image', type: 'image', label: 'Image' },
-                  { name: 'text', type: 'text', label: 'Text' }
+                  { name: 'image', type: 'image' },
+                  { name: 'text', type: 'text' }
                 ]
               }
             },
             {
               name: 'values',
               type: 'object',
-              label: 'Values',
               fields: [
-                { name: 'heading', type: 'string', label: 'Heading' },
-                { name: 'text', type: 'text', label: 'Text' }
+                { name: 'heading', type: 'string' },
+                { name: 'text', type: 'text' }
               ]
             }
           ]
         },
         {
-          name: 'about',
-          label: 'About Page',
-          filePathPattern: 'about/index.md',
+          name: 'About',
           type: 'page',
+          filePath: 'site/content/about/index.md',
+          urlPath: '/about',
           fields: [
-            { name: 'title', type: 'string', label: 'Title' },
-            { name: 'body', type: 'markdown', label: 'Body' }
+            { name: 'title', type: 'string' },
+            { name: 'body', type: 'markdown' }
           ]
         },
         {
-          name: 'services',
-          label: 'Services Page',
-          filePathPattern: 'services/index.md',
+          name: 'Services',
           type: 'page',
+          filePath: 'site/content/services/index.md',
+          urlPath: '/services',
           fields: [
-            { name: 'title', type: 'string', label: 'Title' },
-            { name: 'body', type: 'markdown', label: 'Body' }
+            { name: 'title', type: 'string' },
+            { name: 'body', type: 'markdown' }
           ]
         },
         {
-          name: 'contact',
-          label: 'Contact Page',
-          filePathPattern: 'contact/index.md',
+          name: 'Contact',
           type: 'page',
+          filePath: 'site/content/contact/index.md',
+          urlPath: '/contact',
           fields: [
-            { name: 'title', type: 'string', label: 'Title' },
-            { name: 'body', type: 'markdown', label: 'Body' }
+            { name: 'title', type: 'string' },
+            { name: 'body', type: 'markdown' }
           ]
         }
       ]
