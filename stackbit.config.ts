@@ -59,6 +59,36 @@ export default defineStackbitConfig({
               ]
             }
           ]
+        },
+        {
+          name: 'about',
+          label: 'About Page',
+          filePathPattern: 'about/index.md',
+          type: 'page',
+          fields: [
+            { name: 'title', type: 'string', label: 'Title' },
+            { name: 'body', type: 'markdown', label: 'Body' }
+          ]
+        },
+        {
+          name: 'services',
+          label: 'Services Page',
+          filePathPattern: 'services/index.md',
+          type: 'page',
+          fields: [
+            { name: 'title', type: 'string', label: 'Title' },
+            { name: 'body', type: 'markdown', label: 'Body' }
+          ]
+        },
+        {
+          name: 'contact',
+          label: 'Contact Page',
+          filePathPattern: 'contact/index.md',
+          type: 'page',
+          fields: [
+            { name: 'title', type: 'string', label: 'Title' },
+            { name: 'body', type: 'markdown', label: 'Body' }
+          ]
         }
       ]
     })
